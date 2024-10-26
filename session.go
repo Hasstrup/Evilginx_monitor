@@ -94,7 +94,7 @@ func readFile() {
 	}
 
 	// Only notify if username and password are present
-	if latestSession.Username != "" && latestSession.Password != "" {
+	if latestSession.ID != 0 {
 		Notify(latestSession)
 	} else {
 		fmt.Println("No session found.")
